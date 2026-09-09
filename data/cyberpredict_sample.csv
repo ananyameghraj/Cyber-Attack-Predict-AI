@@ -1,0 +1,6 @@
+timestamp,source_ip,network_packet_size,login_attempts,failed_logins,attack_stage,device_id
+2026-09-09T10:00:00,10.0.0.11,420,1,0,Normal Traffic,device-01
+2026-09-09T10:01:00,10.0.0.12,860,4,2,Port Scanning,device-02
+2026-09-09T10:02:00,10.0.0.13,1450,8,5,Suspicious Login,device-03
+2026-09-09T10:03:00,10.0.0.14,3200,15,11,Privilege Escalation,device-04
+2026-09-09T10:04:00,10.0.0.15,6800,22,18,Data Exfiltration,device-05

@@ -1,6 +1,7 @@
 import csv
 import io
 import json
+import re
 from datetime import datetime, timezone
 from typing import Any
 
@@ -30,29 +31,60 @@ STAGES = [
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 ALLOWED_DATASET_SUFFIXES = {".csv", ".json", ".jsonl"}
 
+def _normalize(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", str(value).strip().lower()).strip("_")
+
 def _number(row: dict[str, Any], names: tuple[str, ...]) -> float:
-    for name in names:
-        for key, value in row.items():
-            if key.lower().replace(" ", "_") == name:
-                try:
-                    return float(value)
-                except (TypeError, ValueError):
-                    pass
+    normalized_names = {_normalize(name) for name in names}
+    for key, value in row.items():
+        if _normalize(key) in normalized_names:
+            try:
+                return float(value)
+            except (TypeError, ValueError):
+                pass
     return 0.0
 
+def _numeric_total(rows: list[dict[str, Any]], excluded: set[str]) -> float:
+    total = 0.0
+    for row in rows:
+        for key, value in row.items():
+            if _normalize(key) in excluded:
+                continue
+            try:
+                number = float(value)
+                if number == number:
+                    total += number
+            except (TypeError, ValueError):
+                continue
+    return total
+
 def _dataset_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    populated_rows = [row for row in rows if any(str(value or "").strip() for value in row.values())]
+    if not populated_rows:
+        raise ValueError("The dataset contains headers but no populated data rows.")
+    rows = populated_rows
     row_count = len(rows)
-    failed_logins = sum(_number(row, ("failed_logins", "failed_login_attempts", "login_failures")) for row in rows)
-    traffic = sum(_number(row, ("traffic_volume", "bytes", "network_traffic", "traffic")) for row in rows)
-    stages_found = [str(row.get("attack_stage", row.get("stage", ""))).lower() for row in rows]
+    failed_logins = sum(_number(row, ("failed_logins", "failed_login_attempts", "login_failures", "login_attempts")) for row in rows)
+    traffic = sum(_number(row, ("traffic_volume", "bytes", "network_packet_size", "network_traffic", "traffic")) for row in rows)
+    if traffic == 0:
+        traffic = _numeric_total(rows, {"id", "session_id", "org_id", "incident_id", "alert_id"})
+    stages_found = [" ".join(str(value or "") for value in row.values()).lower() for row in rows]
     stage_index = 0
-    for index, stage in enumerate(STAGES):
-        if any(stage.lower() in value or stage.split()[0].lower() in value for value in stages_found):
+    stage_keywords = {
+        4: ("exfil", "data theft", "outbound transfer"),
+        3: ("privilege", "escalat", "admin", "root"),
+        2: ("login", "credential", "account", "authentication"),
+        1: ("scan", "port", "probe", "recon"),
+    }
+    for index, keywords in stage_keywords.items():
+        if any(any(keyword in value for keyword in keywords) for value in stages_found):
             stage_index = max(stage_index, index)
     threat_score = min(99, round((failed_logins * 2 + stage_index * 18 + min(row_count, 100) / 4)))
     confidence = min(98, max(54, 64 + stage_index * 6 + min(row_count, 40) // 4))
     source_keys = ("source_ip", "src_ip", "source", "device_id")
     sources = {str(row.get(key)) for row in rows for key in source_keys if row.get(key)}
+    if not sources:
+        sources = {str(row.get(key)) for row in rows for key in row if any(token in _normalize(key) for token in ("ip", "device", "org", "detector")) and row.get(key)}
     return {
         "row_count": row_count,
         "source_count": len(sources),
@@ -94,7 +126,11 @@ async def upload_dataset(file: UploadFile = File(...)) -> dict[str, Any]:
         rows = [row for row in rows if isinstance(row, dict)]
     except (UnicodeDecodeError, json.JSONDecodeError, AttributeError) as error:
         raise HTTPException(status_code=400, detail=f"Could not parse dataset: {error}") from error
-    return {"filename": safe_name, "path": f"data/{safe_name}", "summary": _dataset_summary(rows), "simulated": True}
+    try:
+        summary = _dataset_summary(rows)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    return {"filename": safe_name, "path": f"data/{safe_name}", "summary": summary, "simulated": True}
 
 @app.post("/api/forecast")
 def forecast(payload: ForecastRequest) -> dict[str, Any]:
