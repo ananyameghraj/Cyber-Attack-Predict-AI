@@ -67,7 +67,7 @@ function App() {
     setUploadError(false)
     setUploadMessage('Uploading...')
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/dataset', { method: 'POST', body: formData })
+      const response = await fetch('http://cyber-attack-predict-ai.onrender.com/api/dataset', { method: 'POST', body: formData })
       const result = await response.json()
       if (!response.ok) throw new Error(result.detail || 'Upload failed')
       const uploadedSummary = result.summary as DatasetSummary
