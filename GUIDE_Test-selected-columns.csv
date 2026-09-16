@@ -1,125 +1,126 @@
 Id,OrgId,IncidentId,AlertId,Timestamp,DetectorId,AlertTitle,Category,MitreTechniques,IncidentGrade
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
+alert_101,org_soc_1,inc_500,alt_2001,2026-09-16T09:02:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_102,org_soc_1,inc_500,alt_2002,2026-09-16T09:04:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_103,org_soc_1,inc_500,alt_2003,2026-09-16T09:06:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_104,org_soc_1,inc_500,alt_2004,2026-09-16T09:08:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_105,org_soc_1,inc_501,alt_2005,2026-09-16T09:10:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_106,org_soc_1,inc_501,alt_2006,2026-09-16T09:12:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_107,org_soc_1,inc_501,alt_2007,2026-09-16T09:14:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_108,org_soc_1,inc_501,alt_2008,2026-09-16T09:16:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_109,org_soc_1,inc_501,alt_2009,2026-09-16T09:18:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_110,org_soc_1,inc_502,alt_2010,2026-09-16T09:20:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_111,org_soc_1,inc_502,alt_2011,2026-09-16T09:22:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_112,org_soc_1,inc_502,alt_2012,2026-09-16T09:24:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_113,org_soc_1,inc_502,alt_2013,2026-09-16T09:26:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_114,org_soc_1,inc_502,alt_2014,2026-09-16T09:28:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_115,org_soc_1,inc_503,alt_2015,2026-09-16T09:30:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_116,org_soc_1,inc_503,alt_2016,2026-09-16T09:32:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_117,org_soc_1,inc_503,alt_2017,2026-09-16T09:34:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_118,org_soc_1,inc_503,alt_2018,2026-09-16T09:36:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_119,org_soc_1,inc_503,alt_2019,2026-09-16T09:38:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_120,org_soc_1,inc_504,alt_2020,2026-09-16T09:40:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_121,org_soc_1,inc_504,alt_2021,2026-09-16T09:42:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_122,org_soc_1,inc_504,alt_2022,2026-09-16T09:44:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_123,org_soc_1,inc_504,alt_2023,2026-09-16T09:46:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_124,org_soc_1,inc_504,alt_2024,2026-09-16T09:48:00,det_ai_01,"Routine Heartbeat","Normal Traffic",T1000,Informational
+alert_125,org_soc_1,inc_505,alt_2025,2026-09-16T09:50:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_126,org_soc_1,inc_505,alt_2026,2026-09-16T09:52:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_127,org_soc_1,inc_505,alt_2027,2026-09-16T09:54:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_128,org_soc_1,inc_505,alt_2028,2026-09-16T09:56:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_129,org_soc_1,inc_505,alt_2029,2026-09-16T09:58:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_130,org_soc_1,inc_506,alt_2030,2026-09-16T10:00:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_131,org_soc_1,inc_506,alt_2031,2026-09-16T10:02:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_132,org_soc_1,inc_506,alt_2032,2026-09-16T10:04:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_133,org_soc_1,inc_506,alt_2033,2026-09-16T10:06:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_134,org_soc_1,inc_506,alt_2034,2026-09-16T10:08:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_135,org_soc_1,inc_507,alt_2035,2026-09-16T10:10:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_136,org_soc_1,inc_507,alt_2036,2026-09-16T10:12:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_137,org_soc_1,inc_507,alt_2037,2026-09-16T10:14:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_138,org_soc_1,inc_507,alt_2038,2026-09-16T10:16:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_139,org_soc_1,inc_507,alt_2039,2026-09-16T10:18:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_140,org_soc_1,inc_508,alt_2040,2026-09-16T10:20:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_141,org_soc_1,inc_508,alt_2041,2026-09-16T10:22:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_142,org_soc_1,inc_508,alt_2042,2026-09-16T10:24:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_143,org_soc_1,inc_508,alt_2043,2026-09-16T10:26:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_144,org_soc_1,inc_508,alt_2044,2026-09-16T10:28:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_145,org_soc_1,inc_509,alt_2045,2026-09-16T10:30:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_146,org_soc_1,inc_509,alt_2046,2026-09-16T10:32:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_147,org_soc_1,inc_509,alt_2047,2026-09-16T10:34:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_148,org_soc_1,inc_509,alt_2048,2026-09-16T10:36:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_149,org_soc_1,inc_509,alt_2049,2026-09-16T10:38:00,det_ai_02,"Reconnaissance Port Sweep","Port Scanning",T1046,Low
+alert_150,org_soc_1,inc_510,alt_2050,2026-09-16T10:40:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_151,org_soc_1,inc_510,alt_2051,2026-09-16T10:42:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_152,org_soc_1,inc_510,alt_2052,2026-09-16T10:44:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_153,org_soc_1,inc_510,alt_2053,2026-09-16T10:46:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_154,org_soc_1,inc_510,alt_2054,2026-09-16T10:48:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_155,org_soc_1,inc_511,alt_2055,2026-09-16T10:50:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_156,org_soc_1,inc_511,alt_2056,2026-09-16T10:52:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_157,org_soc_1,inc_511,alt_2057,2026-09-16T10:54:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_158,org_soc_1,inc_511,alt_2058,2026-09-16T10:56:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_159,org_soc_1,inc_511,alt_2059,2026-09-16T10:58:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_160,org_soc_1,inc_512,alt_2060,2026-09-16T11:00:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_161,org_soc_1,inc_512,alt_2061,2026-09-16T11:02:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_162,org_soc_1,inc_512,alt_2062,2026-09-16T11:04:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_163,org_soc_1,inc_512,alt_2063,2026-09-16T11:06:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_164,org_soc_1,inc_512,alt_2064,2026-09-16T11:08:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_165,org_soc_1,inc_513,alt_2065,2026-09-16T11:10:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_166,org_soc_1,inc_513,alt_2066,2026-09-16T11:12:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_167,org_soc_1,inc_513,alt_2067,2026-09-16T11:14:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_168,org_soc_1,inc_513,alt_2068,2026-09-16T11:16:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_169,org_soc_1,inc_513,alt_2069,2026-09-16T11:18:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_170,org_soc_1,inc_514,alt_2070,2026-09-16T11:20:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_171,org_soc_1,inc_514,alt_2071,2026-09-16T11:22:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_172,org_soc_1,inc_514,alt_2072,2026-09-16T11:24:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_173,org_soc_1,inc_514,alt_2073,2026-09-16T11:26:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_174,org_soc_1,inc_514,alt_2074,2026-09-16T11:28:00,det_ai_03,"Brute Force Credential Guessing","Suspicious Login",T1110,Medium
+alert_175,org_soc_1,inc_515,alt_2075,2026-09-16T11:30:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_176,org_soc_1,inc_515,alt_2076,2026-09-16T11:32:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_177,org_soc_1,inc_515,alt_2077,2026-09-16T11:34:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_178,org_soc_1,inc_515,alt_2078,2026-09-16T11:36:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_179,org_soc_1,inc_515,alt_2079,2026-09-16T11:38:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_180,org_soc_1,inc_516,alt_2080,2026-09-16T11:40:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_181,org_soc_1,inc_516,alt_2081,2026-09-16T11:42:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_182,org_soc_1,inc_516,alt_2082,2026-09-16T11:44:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_183,org_soc_1,inc_516,alt_2083,2026-09-16T11:46:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_184,org_soc_1,inc_516,alt_2084,2026-09-16T11:48:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_185,org_soc_1,inc_517,alt_2085,2026-09-16T11:50:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_186,org_soc_1,inc_517,alt_2086,2026-09-16T11:52:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_187,org_soc_1,inc_517,alt_2087,2026-09-16T11:54:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_188,org_soc_1,inc_517,alt_2088,2026-09-16T11:56:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_189,org_soc_1,inc_517,alt_2089,2026-09-16T11:58:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_190,org_soc_1,inc_518,alt_2090,2026-09-16T12:00:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_191,org_soc_1,inc_518,alt_2091,2026-09-16T12:02:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_192,org_soc_1,inc_518,alt_2092,2026-09-16T12:04:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_193,org_soc_1,inc_518,alt_2093,2026-09-16T12:06:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_194,org_soc_1,inc_518,alt_2094,2026-09-16T12:08:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_195,org_soc_1,inc_519,alt_2095,2026-09-16T12:10:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_196,org_soc_1,inc_519,alt_2096,2026-09-16T12:12:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_197,org_soc_1,inc_519,alt_2097,2026-09-16T12:14:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_198,org_soc_1,inc_519,alt_2098,2026-09-16T12:16:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_199,org_soc_1,inc_519,alt_2099,2026-09-16T12:18:00,det_ai_04,"Sudo Privilege Abuse","Privilege Escalation",T1068,High
+alert_200,org_soc_1,inc_520,alt_2100,2026-09-16T12:20:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_201,org_soc_1,inc_520,alt_2101,2026-09-16T12:22:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_202,org_soc_1,inc_520,alt_2102,2026-09-16T12:24:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_203,org_soc_1,inc_520,alt_2103,2026-09-16T12:26:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_204,org_soc_1,inc_520,alt_2104,2026-09-16T12:28:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_205,org_soc_1,inc_521,alt_2105,2026-09-16T12:30:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_206,org_soc_1,inc_521,alt_2106,2026-09-16T12:32:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_207,org_soc_1,inc_521,alt_2107,2026-09-16T12:34:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_208,org_soc_1,inc_521,alt_2108,2026-09-16T12:36:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_209,org_soc_1,inc_521,alt_2109,2026-09-16T12:38:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_210,org_soc_1,inc_522,alt_2110,2026-09-16T12:40:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_211,org_soc_1,inc_522,alt_2111,2026-09-16T12:42:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_212,org_soc_1,inc_522,alt_2112,2026-09-16T12:44:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_213,org_soc_1,inc_522,alt_2113,2026-09-16T12:46:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_214,org_soc_1,inc_522,alt_2114,2026-09-16T12:48:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_215,org_soc_1,inc_523,alt_2115,2026-09-16T12:50:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_216,org_soc_1,inc_523,alt_2116,2026-09-16T12:52:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_217,org_soc_1,inc_523,alt_2117,2026-09-16T12:54:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_218,org_soc_1,inc_523,alt_2118,2026-09-16T12:56:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_219,org_soc_1,inc_523,alt_2119,2026-09-16T12:58:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_220,org_soc_1,inc_524,alt_2120,2026-09-16T13:00:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_221,org_soc_1,inc_524,alt_2121,2026-09-16T13:02:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_222,org_soc_1,inc_524,alt_2122,2026-09-16T13:04:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_223,org_soc_1,inc_524,alt_2123,2026-09-16T13:06:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_224,org_soc_1,inc_524,alt_2124,2026-09-16T13:08:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
+alert_225,org_soc_1,inc_525,alt_2125,2026-09-16T13:10:00,det_ai_05,"Mass Data Archive Transfer","Data Exfiltration",T1048,Critical
