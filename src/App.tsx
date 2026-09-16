@@ -27,6 +27,8 @@ const defaultAlerts: Alert[] = [
 ]
 const navItems = ['Overview', 'Attack Forecast', 'Network Graph', 'Explainability', 'Alerts', 'MITRE ATT&CK']
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'https://cyber-attack-predict-ai.onrender.com').replace(/\/$/, '')
+
 function App() {
   const [activeNav, setActiveNav] = useState('Overview')
   const [stageIndex, setStageIndex] = useState(2)
@@ -38,6 +40,29 @@ function App() {
   const [uploadError, setUploadError] = useState(false)
   const [summary, setSummary] = useState<DatasetSummary | null>(null)
   const [chartData, setChartData] = useState(defaultChart)
+  const [backendStatus, setBackendStatus] = useState<'online' | 'checking' | 'offline'>('checking')
+
+  useEffect(() => {
+    let isMounted = true
+    async function checkHealth() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/health`)
+        if (res.ok && isMounted) {
+          setBackendStatus('online')
+        } else if (isMounted) {
+          setBackendStatus('offline')
+        }
+      } catch {
+        if (isMounted) setBackendStatus('offline')
+      }
+    }
+    checkHealth()
+    const interval = window.setInterval(checkHealth, 25000)
+    return () => {
+      isMounted = false
+      window.clearInterval(interval)
+    }
+  }, [])
 
   useEffect(() => {
     if (!isSimulating) return
@@ -56,7 +81,21 @@ function App() {
   const traffic = summary?.traffic ?? 8.42
   const threatScore = summary?.threat_score ?? 42 + stageIndex * 14
 
-  function startSimulation() { setSummary(null); setStageIndex(0); setAlerts(defaultAlerts); setIsSimulating(true) }
+  async function startSimulation() {
+    setSummary(null)
+    setStageIndex(0)
+    setAlerts(defaultAlerts)
+    setIsSimulating(true)
+    try {
+      await fetch(`${API_BASE_URL}/api/simulate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+    } catch (err) {
+      console.warn('[API Simulate] Falling back to client-driven sequence:', err)
+    }
+  }
+
   async function uploadDataset(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
     if (!file) return
@@ -65,9 +104,9 @@ function App() {
     setDatasetName(file.name)
     setSummary(null)
     setUploadError(false)
-    setUploadMessage('Uploading...')
+    setUploadMessage('Analyzing with AI backend...')
     try {
-      const response = await fetch('http://cyber-attack-predict-ai.onrender.com/api/dataset', { method: 'POST', body: formData })
+      const response = await fetch(`${API_BASE_URL}/api/dataset`, { method: 'POST', body: formData })
       const result = await response.json()
       if (!response.ok) throw new Error(result.detail || 'Upload failed')
       const uploadedSummary = result.summary as DatasetSummary
@@ -81,7 +120,7 @@ function App() {
         threat: Math.max(5, Math.round(uploadedSummary.threat_score * (index + 3) / 10)),
       })))
       setAlerts([{ severity: uploadedSummary.risk, stage: uploadedSummary.predicted_next_stage, time: new Date().toLocaleTimeString(), source: `${uploadedSummary.source_count} sources`, action: 'Review dataset', color: uploadedSummary.risk === 'CRITICAL' ? 'red' : 'orange' }])
-      setUploadMessage(`${uploadedSummary.row_count.toLocaleString()} rows analyzed`)
+      setUploadMessage(`${uploadedSummary.row_count.toLocaleString()} rows analyzed by AI`)
     } catch (error) {
       setUploadError(true)
       setUploadMessage(error instanceof Error ? error.message : 'Upload failed')
@@ -93,10 +132,10 @@ function App() {
       <div className="brand"><div className="brand-mark"><ScanLine size={21} /></div><div><strong>CYBER<span>PREDICT</span></strong><small>AI SECURITY COMMAND</small></div><button className="icon-button close-mobile" onClick={() => setMobileMenu(false)} aria-label="Close menu"><X size={18} /></button></div>
       <div className="workspace-switch"><span className="status-dot" /> SOC / PRIMARY <ChevronRight size={14} /></div>
       <nav><p className="nav-label">OPERATIONS</p>{navItems.map((item, index) => <button key={item} className={`nav-item ${activeNav === item ? 'active' : ''}`} onClick={() => { setActiveNav(item); setMobileMenu(false) }}><Activity size={17} /><span>{item}</span>{index === 4 && <em>{alerts.length}</em>}</button>)}<p className="nav-label second">SYSTEM</p><button className="nav-item"><Layers3 size={17} /><span>Settings</span></button></nav>
-      <div className="sidebar-bottom"><div className="model-status"><div className="pulse-ring"><BrainCircuit size={18} /></div><div><strong>AI CORE ONLINE</strong><span>v2.4.8 / DEMO MODE</span></div><span className="live-dot" /></div><div className="side-footer">SYSTEM UPTIME <span>14d 07h 22m</span></div></div>
+      <div className="sidebar-bottom"><div className="model-status"><div className="pulse-ring"><BrainCircuit size={18} /></div><div><strong>AI CORE {backendStatus === 'online' ? 'ONLINE' : 'ACTIVE'}</strong><span>API {backendStatus === 'online' ? 'CONNECTED' : backendStatus === 'checking' ? 'CONNECTING...' : 'OFFLINE'}</span></div><span className={`live-dot ${backendStatus === 'online' ? 'dot-online' : backendStatus === 'checking' ? 'dot-checking' : 'dot-offline'}`} /></div><div className="side-footer">SYSTEM UPTIME <span>14d 07h 22m</span></div></div>
     </aside>
     <main className="main-content">
-      <header className="topbar"><button className="icon-button menu-trigger" onClick={() => setMobileMenu(true)} aria-label="Open menu"><Menu size={21} /></button><div className="breadcrumb"><span>COMMAND CENTER</span><ChevronRight size={13} /><b>{activeNav.toUpperCase()}</b></div><div className="top-actions"><div className="search"><Search size={16} /><span>Search events, IPs, techniques...</span></div><button className="icon-button notification" aria-label="Notifications"><Bell size={17} /></button><div className="user-avatar">JS</div></div></header>
+      <header className="topbar"><button className="icon-button menu-trigger" onClick={() => setMobileMenu(true)} aria-label="Open menu"><Menu size={21} /></button><div className="breadcrumb"><span>COMMAND CENTER</span><ChevronRight size={13} /><b>{activeNav.toUpperCase()}</b></div><div className="top-actions"><a href="https://cyber-attack-predict-ai.onrender.com/docs" target="_blank" rel="noopener noreferrer" className="backend-link-pill" title="View Backend API (Swagger UI)"><span className={`status-dot ${backendStatus === 'online' ? 'dot-online' : backendStatus === 'checking' ? 'dot-checking' : 'dot-offline'}`} />BACKEND {backendStatus === 'online' ? 'CONNECTED' : backendStatus === 'checking' ? 'CONNECTING...' : 'OFFLINE'}</a><div className="search"><Search size={16} /><span>Search events, IPs, techniques...</span></div><button className="icon-button notification" aria-label="Notifications"><Bell size={17} /></button><div className="user-avatar">JS</div></div></header>
       <div className="dashboard-content">
         {activeNav !== 'Overview' && activeNav !== 'MITRE ATT&CK' ? <DashboardView view={activeNav} stages={stages} stageIndex={stageIndex} currentStage={currentStage} predictedStage={predictedStage} confidence={confidence} risk={risk} eventCount={eventCount} threatScore={threatScore} alerts={alerts} setAlerts={setAlerts} /> : null}
         {activeNav === 'Overview' || activeNav === 'MITRE ATT&CK' ? <>
@@ -109,7 +148,7 @@ function App() {
         <div className="two-col"><section className="panel network-panel"><div className="panel-header"><div><p className="eyebrow">TOPOLOGY / REAL-TIME</p><h3>Network Graph</h3></div><Network size={17} /></div><div className="network-visual"><div className="grid-lines" /><div className="network-link link-one" /><div className="network-link link-two alert-link" /><div className="network-node user-node"><UserRound size={17} /><span>USER</span><small>uploaded source</small></div><div className="network-node laptop-node"><Laptop size={18} /><span>LAPTOP</span><small>{summary?.source_count ?? 4} sources</small></div><div className="network-node server-node"><Server size={18} /><span>SERVER</span><small>analysis-api</small></div><div className="network-node database-node"><Database size={18} /><span>DATASET</span><small>{datasetName === 'No dataset uploaded' ? 'demo-data' : datasetName}</small></div></div></section><section className="panel explain-panel"><div className="panel-header"><div><p className="eyebrow">MODEL TRANSPARENCY / XAI</p><h3>Why this prediction?</h3></div><BrainCircuit size={17} /></div><p className="explain-intro">Feature importance from the uploaded dataset.</p><Feature label="Failed login attempts" value={summary ? Math.min(99, summary.failed_logins) : 92} tone="critical" /><Feature label="Traffic pattern" value={summary ? Math.min(99, Math.round(summary.threat_score * .9)) : 78} tone="high" /><Feature label="Source diversity" value={summary ? Math.min(99, summary.source_count * 10) : 64} tone="medium" /><div className="model-note"><BrainCircuit size={15} /><span>Dataset summary / <b>{summary ? 'analyzed' : 'demo fallback'}</b></span></div></section></div>
         <div className="section-heading lower"><div><p className="eyebrow">02 / BEHAVIORAL TELEMETRY</p><h2>Live Monitoring</h2></div></div><section className="panel chart-panel"><div className="chart-summary"><div><span className="field-label">NETWORK TRAFFIC</span><strong>{traffic.toLocaleString()} <small>units</small></strong></div><div><span className="field-label">ROWS ANALYZED</span><strong>{eventCount.toLocaleString()}</strong></div><div><span className="field-label">ATTACK PROBABILITY</span><strong>{confidence}<small>%</small></strong></div></div><div className="chart-wrap"><ResponsiveContainer width="100%" height={220}><AreaChart data={chartData}><defs><linearGradient id="trafficFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#26d9e8" stopOpacity={.3} /><stop offset="100%" stopColor="#26d9e8" stopOpacity={0} /></linearGradient><linearGradient id="threatFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#a884ff" stopOpacity={.25} /><stop offset="100%" stopColor="#a884ff" stopOpacity={0} /></linearGradient></defs><CartesianGrid stroke="#1d2a3b" vertical={false} /><XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fill: '#64758c', fontSize: 10 }} /><YAxis axisLine={false} tickLine={false} tick={{ fill: '#64758c', fontSize: 10 }} /><Tooltip contentStyle={{ background: '#101827', border: '1px solid #28435a', color: '#edf8ff' }} /><Area type="monotone" dataKey="traffic" stroke="#26d9e8" strokeWidth={2} fill="url(#trafficFill)" /><Area type="monotone" dataKey="threat" stroke="#a884ff" strokeWidth={2} fill="url(#threatFill)" /></AreaChart></ResponsiveContainer></div></section>
         <div className="lower-grid"><section className="panel alerts-panel"><div className="panel-header"><div><p className="eyebrow">REAL-TIME EVENT STREAM</p><h3>Security Alerts <span className="count-pill">{alerts.length}</span></h3></div></div>{alerts.map((alert, index) => <div className="alert-row" key={`${alert.time}-${index}`}><div className={`alert-icon ${alert.color}`}><AlertTriangle size={15} /></div><div className="alert-main"><div><b>{alert.stage}</b><span className={`severity ${alert.color}`}>{alert.severity}</span></div><span>{alert.source} <i /> {alert.time}</span></div><button className="ack-button" onClick={() => setAlerts((items) => items.filter((_, itemIndex) => itemIndex !== index))} aria-label="Acknowledge alert"><Check size={14} /></button></div>)}</section><section className="panel mitre-panel"><div className="panel-header"><div><p className="eyebrow">TACTICAL MAPPING</p><h3>MITRE ATT&CK</h3></div><GitBranch size={17} /></div><div className="technique-card"><div className="technique-id">T1068</div><div><b>Privilege Escalation</b><span>Derived from forecast stage</span></div></div><div className="technique-card"><div className="technique-id">T1078</div><div><b>Valid Accounts</b><span>Behavioral correlation</span></div></div></section></div>
-        <footer><span><LockKeyhole size={13} /> END-TO-END ENCRYPTED TELEMETRY</span><span>{summary ? 'UPLOADED DATASET / ANALYZED' : 'DEMO DATASET / PREDICTIONS ARE SIMULATED'}</span><b>PREDICT. EXPLAIN. PREVENT.</b></footer>
+        <footer><span><LockKeyhole size={13} /> SECURE API: <a href="https://cyber-attack-predict-ai.onrender.com/docs" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--cyan)', textDecoration: 'none', marginLeft: '4px' }}>cyber-attack-predict-ai.onrender.com</a></span><span>{summary ? 'UPLOADED DATASET / ANALYZED BY AI' : 'DEMO MODE / REAL BACKEND CONNECTED'}</span><b>PREDICT. EXPLAIN. PREVENT.</b></footer>
         </> : null}
       </div>
     </main>

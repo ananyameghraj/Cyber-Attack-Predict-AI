@@ -28,7 +28,7 @@ STAGES = [
     "Data Exfiltration",
 ]
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+DATA_DIR = (Path(__file__).resolve().parent / "data") if (Path(__file__).resolve().parent / "data").exists() else (Path(__file__).resolve().parent.parent / "data")
 ALLOWED_DATASET_SUFFIXES = {".csv", ".json", ".jsonl"}
 
 def _normalize(value: Any) -> str:
